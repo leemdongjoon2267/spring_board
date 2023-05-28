@@ -5,6 +5,8 @@ import com.example.spring_board.author.repository.AuthorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
+import java.sql.SQLException;
 import java.util.List;
 
 
@@ -24,8 +26,13 @@ public class AuthorService {
         return authors;
     }
     
-    public Author findById(Long myId){
-        Author author = authorRepository.findById(myId).orElse(null);
+    public Author findById(Long myId) throws EntityNotFoundException {
+        Author author = authorRepository.findById(myId).orElseThrow(EntityNotFoundException::new);
+        return author;
+    }
+
+    public Author findByEmail(String email) throws SQLException{
+        Author author = authorRepository.findByEmail(email);
         return author;
     }
 
@@ -45,8 +52,8 @@ public class AuthorService {
     public void delete(long id) {
 //        먼저 DB에서 조회 후에 author객체를 가져온다.
 //        해당 author객체로 jpa가 delete 할 수 있도록 전달해준다.
-        Author author = authorRepository.findById(id).orElse(null);
-        authorRepository.delete(author);
+        authorRepository.delete(this.findById(id));
+
     }
 
 
