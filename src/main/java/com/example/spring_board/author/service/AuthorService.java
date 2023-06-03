@@ -1,7 +1,9 @@
 package com.example.spring_board.author.service;
 
 import com.example.spring_board.author.domain.Author;
+import com.example.spring_board.author.etc.AuthorRequestDto;
 import com.example.spring_board.author.repository.AuthorRepository;
+import com.example.spring_board.post.domain.Post;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,14 +38,14 @@ public class AuthorService {
         return author;
     }
 
-    public void update(Author author) throws Exception {
-        Author author1 = authorRepository.findById(author.getId()).orElse(null);
+    public void update(AuthorRequestDto authorRequestDto) throws Exception {
+        Author author1 = authorRepository.findById(Long.parseLong(authorRequestDto.getId())).orElseThrow(Exception::new);
         if(author1 == (null)){
             throw new Exception();
         }else {
-            author1.setName(author.getName());
-            author1.setEmail(author.getEmail());
-            author1.setPassword(author.getPassword());
+            author1.setName(authorRequestDto.getName());
+            author1.setEmail(authorRequestDto.getEmail());
+            author1.setPassword(authorRequestDto.getPassword());
             authorRepository.save(author1);
 
         }
@@ -55,6 +57,7 @@ public class AuthorService {
         authorRepository.delete(this.findById(id));
 
     }
+
 
 
 }
