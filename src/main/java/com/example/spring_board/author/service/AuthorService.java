@@ -5,20 +5,26 @@ import com.example.spring_board.author.etc.AuthorRequestDto;
 import com.example.spring_board.author.repository.AuthorRepository;
 import com.example.spring_board.post.domain.Post;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
+import java.util.Collections;
 import java.util.List;
 
 
 @Service
-public class AuthorService {
+public class AuthorService implements UserDetailsService {
 
     @Autowired
     private AuthorRepository authorRepository;
 
-    public void create(Author author) {
+    public void create(Author author) throws SQLIntegrityConstraintViolationException {
         authorRepository.save(author);
     }
 
@@ -57,6 +63,22 @@ public class AuthorService {
         authorRepository.delete(this.findById(id));
 
     }
+
+    //    doLogin이라는 spring내장 객체가 실행이될때,
+//    UserDetailsService를 구현한 클래스의 LoadByUsername이라는 메서드를 찾는걸로 약속
+    @Override
+//    String username은 사용자가 화면한 email 주소를 스프링이
+//    받아서 loadUserByUsername에 넣어준다
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+//        doLogin 내장 기능이 정상 실행되려면, DB에서 조회한 id/pwd를 return해줘야 한다.
+        Author author = authorRepository.findByEmail(username);
+        if (author == null){
+
+        }
+//        DB에서 조회한 email, password 권한을 return. 권한이 없다면 emptyList로 return.
+        return new User(author.getEmail(), author.getPassword(), Collections.EMPTY_LIST);
+    }
+
 
 
 

@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.persistence.EntityNotFoundException;
+import java.security.Security;
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 
 
@@ -26,6 +28,11 @@ public class AuthorController {
 
         return "home";
     }
+    @GetMapping("author/login")
+    public String authorLogin(){
+
+        return "author/login";
+    }
 
     @GetMapping("authors/new") //@PostMapping(authors)랑 겹쳐도 상관없음
     
@@ -38,7 +45,7 @@ public class AuthorController {
 //    @RequestParam(value = "email")String email,
 //    @RequestParam(value = "password")String password,
 //    @RequestParam(value = "role")String myRole
-    public String authorCreate(AuthorRequestDto authorRequestDto) throws SQLException {
+    public String authorCreate(AuthorRequestDto authorRequestDto) throws SQLIntegrityConstraintViolationException {
 //        Author객체를 만들어서 AuthorService 매개변수로 전달
 
 //        실무에서는 setter최대한 배제
@@ -112,6 +119,7 @@ public class AuthorController {
 
         authorService.delete(Long.parseLong(id));
         return "redirect:/";
-
     }
+
+
 }
