@@ -35,8 +35,17 @@ public class Post {
     @JoinColumn(nullable = false, name="author_id") // null이 불가능함
     private Author author;
 
-    @Column
+
+    @Setter
+    @Column(length = 1)
+    private String apointment;
+
+    @Column()
+    private LocalDateTime apointment_time;
+
+    @Column()
     private LocalDateTime createDate;
+
 
     @Builder
     public Post(String title, String contents, Author author){

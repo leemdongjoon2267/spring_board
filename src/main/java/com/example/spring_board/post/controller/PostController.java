@@ -35,6 +35,8 @@ public class PostController {
 
     @PostMapping("posts/new")
     public String postCreate(PostRequestDto postRequestDto) throws SQLException {
+        System.out.println(postRequestDto.getApointment());
+        System.out.println(postRequestDto.getApointment_time());
 
         Author author1 = authorService.findByEmail(postRequestDto.getEmail());
         Post post1 = Post.builder()
