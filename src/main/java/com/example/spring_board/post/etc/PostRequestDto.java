@@ -13,7 +13,7 @@ public class PostRequestDto {
     private String title;
     private String contents;
     private String email;
-    private String apointment;
-    private LocalDateTime apointment_time;
+    private String appointment;
+    private String appointment_time;
 
 }

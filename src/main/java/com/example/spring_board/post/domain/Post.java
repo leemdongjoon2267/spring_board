@@ -38,21 +38,23 @@ public class Post {
 
     @Setter
     @Column(length = 1)
-    private String apointment;
+    private String appointment;
 
     @Column()
-    private LocalDateTime apointment_time;
+    private LocalDateTime appointment_time;
 
     @Column()
     private LocalDateTime createDate;
 
 
     @Builder
-    public Post(String title, String contents, Author author){
+    public Post(String title, String contents, Author author, String appointment, LocalDateTime appointment_time){
 
         this.title = title;
         this.contents= contents;
         this.author = author;
+        this.appointment = appointment;
+        this.appointment_time = appointment_time;
         this.createDate = LocalDateTime.now();
     }
 }

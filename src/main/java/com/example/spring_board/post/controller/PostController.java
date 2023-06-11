@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.persistence.EntityNotFoundException;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Controller
@@ -35,18 +37,7 @@ public class PostController {
 
     @PostMapping("posts/new")
     public String postCreate(PostRequestDto postRequestDto) throws SQLException {
-        System.out.println(postRequestDto.getApointment());
-        System.out.println(postRequestDto.getApointment_time());
-
-        Author author1 = authorService.findByEmail(postRequestDto.getEmail());
-        Post post1 = Post.builder()
-                .title(postRequestDto.getTitle())
-                .contents(postRequestDto.getContents())
-//                post에는 author변수가 있으므로, post생성시 author 객체를 넘겨주면,
-//                내부적으로 author객체에서 author_id를 꺼내어 DB에 넣게 된다.
-                .author(author1)
-                .build();
-        postService.create(post1);
+        postService.create(postRequestDto);
         return "redirect:/";
     }
 
@@ -77,4 +68,5 @@ public class PostController {
         return "redirect:/";
 
     }
+
 }
