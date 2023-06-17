@@ -1,53 +1,39 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!-- saved from url=(0120)file:///C:/Users/User/Documents/%EC%B9%B4%EC%B9%B4%EC%98%A4%ED%86%A1%20%EB%B0%9B%EC%9D%80%20%ED%8C%8C%EC%9D%BC/home.html -->
+<html xmlns:th="http://www.thymeleaf.org"><head th:replace="fragments/header :: header"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Hello</title>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <style>
-        .right-align {
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-            margin-top: 10px;
-            margin-right: 15px;
-            font-family: Arial, sans-serif;
-            font-size: 18px;
-            color: #000000;
-        }
-    </style>
-    <title>게시판 홈</title>
 </head>
 
 <body>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="/">게시판 서비스</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="/authors">회원관리</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/posts">글목록</a>
-            </li>
-            <li class="nav-item">
-                <td th:if="${session.my_greeting}!=null"><a class="nav-link" href="/doLogout">로그아웃</a></td>
-                <td th:if="${session.my_greeting}==null"><a class="nav-link" href="/author/login">로그인</a></td>
-            </li>
-        </ul>
-    </div>
-</nav>
-<div class="right-align">
-    <span th:text="${session.my_greeting}"></span>
-</div>
-</body>
-</html>
+<div class="container">
+
+    <div th:replace="fragments/bodyHeader :: bodyHeader">
+
+        <div class="jumbotron">
+            <h1>HELLO SHOP</h1>
+            <p class="lead">회원 기능</p>
+            <p>
+                <a class="btn btn-lg btn-secondary" href="file:///C:/members/new">회원 가입</a>
+                <a class="btn btn-lg btn-secondary" href="file:///C:/members">회원 목록</a>
+            </p>
+            <p class="lead">상품 기능</p>
+            <p>
+                <a class="btn btn-lg btn-dark" href="file:///C:/items/new">상품 등록</a>
+                <a class="btn btn-lg btn-dark" href="file:///C:/items">상품 목록</a>
+            </p>
+            <p class="lead">주문 기능</p>
+            <p>
+                <a class="btn btn-lg btn-info" href="file:///C:/order">상품 주문</a>
+                <a class="btn btn-lg btn-info" href="file:///C:/orders">주문 내역</a>
+            </p>
+        </div>
+
+        <div th:replace="fragments/footer :: footer">
+
+        </div> <!-- /container -->
+
+
+
+    </div></div></body></html>

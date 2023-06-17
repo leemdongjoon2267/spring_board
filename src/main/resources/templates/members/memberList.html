@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<!-- saved from url=(0126)file:///C:/Users/User/Documents/%EC%B9%B4%EC%B9%B4%EC%98%A4%ED%86%A1%20%EB%B0%9B%EC%9D%80%20%ED%8C%8C%EC%9D%BC/memberList.html -->
+<html xmlns:th="http://www.thymeleaf.org"><head th:replace="fragments/header :: header"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head><body>
+
+<div class="container">
+    <div th:replace="fragments/bodyHeader :: bodyHeader">
+        <div>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>이름</th>
+                    <th>email</th>
+                    <th>도시</th>
+                    <th>주소</th>
+                    <th>우편번호</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="member : ${members}">
+                    <td th:text="${member.id}"></td>
+                    <td th:text="${member.name}"></td>
+                    <td th:text="${member.email}"></td>
+                    <td th:text="${member.address?.city}"></td>
+                    <td th:text="${member.address?.details}"></td>
+                    <td th:text="${member.address?.zipcode}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div th:replace="fragments/footer :: footer">
+
+        </div> <!-- /container -->
+
+
+
+    </div></div></body></html>
