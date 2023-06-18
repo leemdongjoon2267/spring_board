@@ -5,12 +5,12 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class ItemRequestDto {
+public class ItemForm {
 
     private String id;
-    private String title;
-    private String contents;
-    private String email;
+    private String name;
+    private String price;
+    private String quantity;
 
 
 }

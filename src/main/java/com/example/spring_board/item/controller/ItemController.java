@@ -1,8 +1,10 @@
 package com.example.spring_board.item.controller;
 
 import com.example.spring_board.item.domain.Item;
-import com.example.spring_board.item.etc.ItemRequestDto;
+import com.example.spring_board.item.etc.ItemForm;
 import com.example.spring_board.item.service.ItemService;
+import com.example.spring_board.member.domain.Member;
+import com.example.spring_board.member.etc.MemberForm;
 import com.example.spring_board.member.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,50 +21,47 @@ import java.util.List;
 public class ItemController {
 
     @Autowired
-    private ItemService itemtService;
+    private ItemService itemService;
+    
 
-    @Autowired
-    private MemberService memberService;
-
-
-    @GetMapping("items/new")
-
-    public String itemCreateForm(){
-        return "item/item-register";
+    @GetMapping("/items/new")
+    public String itemCreateForm(Model model){
+        model.addAttribute("form", new ItemForm());
+        return "items/createItemForm";
     }
 
-    @PostMapping("items/new")
-    public String itemCreate(ItemRequestDto itemRequestDto) throws SQLException {
-        itemService.create(itemRequestDto);
-        return "redirect:/";
+    @PostMapping("/items/new")
+    public String itemCreate(ItemForm itemForm) throws SQLException {
+        Item item1 = Item.builder()
+                .name(itemForm.getName())
+                .price(itemForm.getPrice())
+                .quantity(itemForm.getQuantity())
+                .build();
+        itemService.create(item1);
+
+        return "redirect:/items";
     }
 
-    @GetMapping("posts")
-    public String itemFindAll(Model model){
+    @GetMapping("items")
+    public String itemFindAll(Model model) {
         List<Item> items = itemService.findAll();
-        model.addAttribute("itemList", items);
-        return "item/item-list";
+        model.addAttribute("items", items);
+        return "items/itemList";
     }
 
-    @GetMapping("item")
-    public String itemFindById(@RequestParam(value = "id")Long myId, Model model)throws EntityNotFoundException {
-        Item item = itemService.findById(myId);
-        model.addAttribute("item", item);
-        return "item/item-detail";
+    @GetMapping("item/{id}/edit")
+//    get요청의 paramete넣는 방법 2가지 1)pathvariable 2)RequestParam(Form을 쓰는 방법)
+    public String itemUpdateForm(Model model) {
+        List<Item> items = itemService.findAll();
+        model.addAttribute("items", items);
+        return "items/itemList";
     }
 
-    @PostMapping("item/update")
-    public String itemUpdate (ItemRequestDto itemRequestDto) throws Exception {
-        itemService.update(itemRequestDto);
-        return "redirect:/";
-    }
-
-    @GetMapping("item/delete")
-    public String deleteMember(@RequestParam(value = "id")String id){
-
-        itemService.delete(Long.parseLong(id));
-        return "redirect:/";
-
+    @PostMapping("item/{id}/edit")
+    public String itemUpdate(Model model) {
+        List<Item> items = itemService.findAll();
+        model.addAttribute("items", items);
+        return "items/itemList";
     }
 
 }

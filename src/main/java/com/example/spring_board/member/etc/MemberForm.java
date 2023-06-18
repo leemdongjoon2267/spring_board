@@ -9,11 +9,11 @@ import lombok.Setter;
 //내부적으로 Setter사용해서 html의 input값을 꺼내어 담으므로, Setter가 필요
 @Setter
 public class MemberForm {
-    private String id;
+
     private String name;
     private String email;
     private String password;
     private String city;
-    private String street;
+    private String details;
     private String zipcode;
 }

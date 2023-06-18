@@ -9,7 +9,8 @@ spring:
 #    port: 6379
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/spring_board
+#    url: jdbc:mysql://localhost:3306/spring_board
+    url: jdbc:mysql://localhost:3306/spring_order
     username: root
     password: 1234
   jpa:
