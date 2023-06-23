@@ -1,19 +1,14 @@
 package com.example.spring_board.item.controller;
 
 import com.example.spring_board.item.domain.Item;
-import com.example.spring_board.item.etc.ItemForm;
+import com.example.spring_board.item.etc.ItemDto;
 import com.example.spring_board.item.service.ItemService;
-import com.example.spring_board.member.domain.Member;
-import com.example.spring_board.member.etc.MemberForm;
-import com.example.spring_board.member.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.persistence.EntityNotFoundException;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -22,20 +17,20 @@ public class ItemController {
 
     @Autowired
     private ItemService itemService;
-    
+
 
     @GetMapping("/items/new")
     public String itemCreateForm(Model model){
-        model.addAttribute("form", new ItemForm());
+        model.addAttribute("form", new ItemDto());
         return "items/createItemForm";
     }
 
     @PostMapping("/items/new")
-    public String itemCreate(ItemForm itemForm) throws SQLException {
+    public String itemCreate(ItemDto itemDto) throws SQLException {
         Item item1 = Item.builder()
-                .name(itemForm.getName())
-                .price(itemForm.getPrice())
-                .quantity(itemForm.getQuantity())
+                .name(itemDto.getName())
+                .price(itemDto.getPrice())
+                .stockQuantity(itemDto.getStockQuantity())
                 .build();
         itemService.create(item1);
 

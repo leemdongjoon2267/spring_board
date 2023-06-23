@@ -21,27 +21,26 @@ public class Item {
     private Long id;
 
     @Setter
-
     private String name;
 
     @Setter
-
     private int price;
 
 
     @Setter
 
-    private int stockquantity;
+    private int stockQuantity;
 
+    @Setter
     private LocalDateTime createDate;
 
 
     @Builder
-    public Item(String Name, int Price, int Quantity){
+    public Item(String Name, int Price, int stockQuantity){
 
         this.name = name;
         this.price= price;
-        this.stockquantity = stockquantity;
+        this.stockQuantity = stockQuantity;
         this.createDate = LocalDateTime.now();
 
     }

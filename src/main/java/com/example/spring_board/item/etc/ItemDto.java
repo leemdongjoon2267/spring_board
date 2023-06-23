@@ -5,12 +5,10 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class ItemForm {
-
-    private String id;
+public class ItemDto {
     private String name;
     private String price;
-    private String quantity;
+    private String stockQuantity;
 
 
 }
