@@ -1,4 +1,4 @@
-package com.example.spring_board.item.etc;
+package com.example.spring_board.order.item.etc;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -7,8 +7,8 @@ import lombok.Setter;
 @Setter
 public class ItemDto {
     private String name;
-    private String price;
-    private String stockQuantity;
+    private int price;
+    private int stockQuantity;
 
 
 }

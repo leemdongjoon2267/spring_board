@@ -1,7 +1,7 @@
-package com.example.spring_board.item.repository;
+package com.example.spring_board.order.item.repository;
 
 
-import com.example.spring_board.item.domain.Item;
+import com.example.spring_board.order.item.domain.Item;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

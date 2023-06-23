@@ -1,4 +1,4 @@
-package com.example.spring_board.item.domain;
+package com.example.spring_board.order.item.domain;
 
 
 import lombok.Builder;

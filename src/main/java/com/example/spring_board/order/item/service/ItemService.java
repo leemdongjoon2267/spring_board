@@ -1,14 +1,11 @@
-package com.example.spring_board.item.service;
+package com.example.spring_board.order.item.service;
 
-import com.example.spring_board.item.domain.Item;
-import com.example.spring_board.item.etc.ItemDto;
-import com.example.spring_board.item.repository.ItemRepository;
-import com.example.spring_board.member.domain.Member;
-import com.example.spring_board.member.service.MemberService;
+import com.example.spring_board.order.item.domain.Item;
+import com.example.spring_board.order.item.etc.ItemDto;
+import com.example.spring_board.order.item.repository.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
 import java.sql.SQLException;
 import java.util.List;

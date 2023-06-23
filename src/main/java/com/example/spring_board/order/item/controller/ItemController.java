@@ -1,8 +1,8 @@
-package com.example.spring_board.item.controller;
+package com.example.spring_board.order.item.controller;
 
-import com.example.spring_board.item.domain.Item;
-import com.example.spring_board.item.etc.ItemDto;
-import com.example.spring_board.item.service.ItemService;
+import com.example.spring_board.order.item.domain.Item;
+import com.example.spring_board.order.item.etc.ItemDto;
+import com.example.spring_board.order.item.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
