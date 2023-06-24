@@ -29,20 +29,22 @@ public class ItemService {
         return items;
     }
 
-
-    public void update(ItemDto itemDto) throws Exception {
-        Item item1 = itemRepository.findById(Long.parseLong(itemDto.getId())).orElseThrow(Exception::new);
-        if(item1 == (null)){
-            throw new Exception();
-        }else {
-            item1.setName(itemDto.getName());
-            itemRepository.save(item1);
-
-        }
+    public Item findById(Long myId){
+        return  itemRepository.findById(myId).orElse(null);
     }
 
-    public void delete(long id) {
-        itemRepository.delete(this.findById(id));
+    public void update(Long myId, ItemDto itemDto){
+//        조회하고, save
+        Item item = itemRepository.findById(myId).orElse(null);
+        item.updateItem(itemDto.getPrice(), item.getStockQuantity());
+        itemRepository.save(item);
+    }
+
+
+
+    public void delete(long myId) {
+        Item item = itemRepository.findById(myId).orElse(null);
+        itemRepository.delete(item);
 
     }
 

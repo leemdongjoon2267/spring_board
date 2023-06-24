@@ -13,6 +13,6 @@ public interface ItemRepository extends JpaRepository<Item, Long> {
 
 //    jpa repository에서 customizing 메서드 생성
 //    리턴타입 메서드명(매개변수)
-    List<Item> findByAppointment(String appointment);
+
 
 }

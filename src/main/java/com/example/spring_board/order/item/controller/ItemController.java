@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.sql.SQLException;
@@ -46,17 +47,29 @@ public class ItemController {
 
     @GetMapping("item/{id}/edit")
 //    get요청의 paramete넣는 방법 2가지 1)pathvariable 2)RequestParam(Form을 쓰는 방법)
-    public String itemUpdateForm(Model model) {
-        List<Item> items = itemService.findAll();
-        model.addAttribute("items", items);
-        return "items/itemList";
+    public String itemUpdateForm(@PathVariable("id")Long myId, Model model) {
+        Item item = itemService.findById(myId);
+//        ItemDto dto = new ItemDto();
+//        dto.setName(item.getName());
+//        dto.setPrice((item.getPrice()));
+//        dto.setStockQuantity(item.getStockQuantity());
+        model.addAttribute("form", item);
+        return "items/updateItemForm";
     }
 
     @PostMapping("item/{id}/edit")
-    public String itemUpdate(Model model) {
+    public String itemUpdate(@PathVariable("id")Long myId, ItemDto itemDto) {
         List<Item> items = itemService.findAll();
-        model.addAttribute("items", items);
-        return "items/itemList";
+        itemService.update(myId, itemDto);
+        return "redirect:/items";
+    }
+
+    @GetMapping("item/{id}/delete")
+
+    public String itemDelete(@PathVariable("id")Long myId) {
+        itemService.delete(myId);
+
+        return "redirect:/items";
     }
 
 }

@@ -19,29 +19,23 @@ public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Setter
     private String name;
-
-    @Setter
     private int price;
-
-
-    @Setter
-
     private int stockQuantity;
-
-    @Setter
     private LocalDateTime createDate;
 
 
     @Builder
-    public Item(String Name, int Price, int stockQuantity){
+    public Item(String name, int price, int stockQuantity){
 
         this.name = name;
         this.price= price;
         this.stockQuantity = stockQuantity;
         this.createDate = LocalDateTime.now();
 
+    }
+    public void updateItem(int price, int stockQuantity){
+        this.price = price;
+        this.stockQuantity = stockQuantity;
     }
 }
