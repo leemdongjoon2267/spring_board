@@ -1,35 +1,34 @@
-<!DOCTYPE html>
-<!-- saved from url=(0130)file:///C:/Users/User/Documents/%EC%B9%B4%EC%B9%B4%EC%98%A4%ED%86%A1%20%EB%B0%9B%EC%9D%80%20%ED%8C%8C%EC%9D%BC/updateItemForm.html -->
-<html xmlns:th="http://www.thymeleaf.org"><head th:replace="fragments/header :: header"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-</head><body>
+
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header" />
+<body>
 
 <div class="container">
-    <div th:replace="fragments/bodyHeader :: bodyHeader">
+    <div th:replace="fragments/bodyHeader :: bodyHeader"/>
 
-        <form th:object="${form}" method="post">
-            <!-- id -->
-            <input type="hidden" th:field="*{id}">
+    <form th:object="${form}" method="post">
+        <!-- id -->
+        <input type="hidden" th:field="*{id}" />
 
-            <div class="form-group">
-                <label th:for="name">상품명</label>
-                <input type="text" th:field="*{name}" class="form-control" placeholder="이름을 입력하세요" readonly/>
-            </div>
-            <div class="form-group">
-                <label th:for="price">가격</label>
-                <input type="number" th:field="*{price}" class="form-control" placeholder="가격을 입력하세요">
-            </div>
-            <div class="form-group">
-                <label th:for="stockQuantity">수량</label>
-                <input type="number" th:field="*{stockQuantity}" class="form-control" placeholder="수량을 입력하세요">
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
+        <div class="form-group">
+            <label th:for="name">상품명</label>
+            <input type="text" th:field="*{name}" class="form-control" placeholder="이름을 입력하세요" />
+        </div>
+        <div class="form-group">
+            <label th:for="price">가격</label>
+            <input type="number" th:field="*{price}" class="form-control" placeholder="가격을 입력하세요" />
+        </div>
+        <div class="form-group">
+            <label th:for="stockQuantity">수량</label>
+            <input type="number" th:field="*{stockQuantity}" class="form-control" placeholder="수량을 입력하세요" />
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
 
-        <div th:replace="fragments/footer :: footer">
+    <div th:replace="fragments/footer :: footer" />
 
-        </div> <!-- /container -->
+</div> <!-- /container -->
 
-    </div>
-</div>
 </body>
 </html>
