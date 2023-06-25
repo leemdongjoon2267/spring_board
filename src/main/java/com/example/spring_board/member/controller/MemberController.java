@@ -26,10 +26,10 @@ public class MemberController {
     }
 
     @GetMapping("/members/new")
-    public String memberCreateForm(Model model){
+    public String memberCreate(Model model){
 //        createMemberForm에서 memberForm이라는 dto객체를 필요로 하므로, dto객체를 만들어서 model을 통해 전달
 //        Dto에서 NotNull, NotEmpty등 validation을
-        model.addAttribute("memberDto", new MemberDto());
+        model.addAttribute("memberForm", new MemberDto());
         return "members/createMemberForm";
     }
 

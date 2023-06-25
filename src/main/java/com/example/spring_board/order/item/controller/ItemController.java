@@ -45,26 +45,26 @@ public class ItemController {
         return "items/itemList";
     }
 
-    @GetMapping("item/{id}/edit")
+    @GetMapping("items/{id}/edit")
 //    get요청의 paramete넣는 방법 2가지 1)pathvariable 2)RequestParam(Form을 쓰는 방법)
     public String itemUpdateForm(@PathVariable("id")Long myId, Model model) {
         Item item = itemService.findById(myId);
-//        ItemDto dto = new ItemDto();
-//        dto.setName(item.getName());
-//        dto.setPrice((item.getPrice()));
-//        dto.setStockQuantity(item.getStockQuantity());
+        ItemDto dto = new ItemDto();
+        dto.setName(item.getName());
+        dto.setPrice((item.getPrice()));
+        dto.setStockQuantity(item.getStockQuantity());
         model.addAttribute("form", item);
         return "items/updateItemForm";
     }
 
-    @PostMapping("item/{id}/edit")
+    @PostMapping("items/{id}/edit")
     public String itemUpdate(@PathVariable("id")Long myId, ItemDto itemDto) {
         List<Item> items = itemService.findAll();
         itemService.update(myId, itemDto);
         return "redirect:/items";
     }
 
-    @GetMapping("item/{id}/delete")
+    @GetMapping("items/{id}/delete")
 
     public String itemDelete(@PathVariable("id")Long myId) {
         itemService.delete(myId);
