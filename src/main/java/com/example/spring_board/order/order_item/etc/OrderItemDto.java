@@ -1,4 +1,4 @@
-package com.example.spring_board.order.orders.etc;
+package com.example.spring_board.order.order_item.etc;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -10,10 +10,8 @@ import java.util.List;
 @Getter
 //내부적으로 Setter사용해서 html의 input값을 꺼내어 담으므로, Setter가 필요
 @Setter
-public class OrderDto {
+public class OrderItemDto {
 
-    private Long memberId;
-    private List<Long> itemId;
-    private List<Long> count;
+
 
 }

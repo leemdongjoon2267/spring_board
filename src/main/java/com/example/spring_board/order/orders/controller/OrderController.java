@@ -1,12 +1,8 @@
 package com.example.spring_board.order.orders.controller;
-
-
 import com.example.spring_board.member.domain.Member;
 import com.example.spring_board.member.repository.MemberRepository;
-import com.example.spring_board.order.item.domain.Item;
-import com.example.spring_board.order.item.etc.ItemDto;
 import com.example.spring_board.order.item.repository.ItemRepository;
-import com.example.spring_board.order.orders.domain.OrderStatus;
+import com.example.spring_board.order.order_item.domain.OrderItem;
 import com.example.spring_board.order.orders.domain.Orders;
 import com.example.spring_board.order.orders.etc.OrderDto;
 import com.example.spring_board.order.orders.service.OrderService;
@@ -14,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -42,14 +37,12 @@ public class OrderController {
 
     @PostMapping("/order")
     public String orderCreate(OrderDto orderDto) throws Exception {
-        Item item1 = itemRepository.findById(orderDto.getItemId()).orElse(null);
-        Member member1 = memberRepository.findById(orderDto.getMemberId()).orElse(null);
-        Orders orders1 = Orders.builder()
-                .quantity(orderDto.getCount())
-                .item(item1)
-                .member(member1)
-                .build();
-                orderService.create(orders1);
+//        Member member1 = memberRepository.findById(orderDto.getMemberId()).orElse(null);
+//        Orders orders1 = Orders.builder()
+//                .member(member1)
+//                .build();
+//        order_item까지 고려하여 로직이 복잡해지므로, service에서 로직처리
+        orderService.create(orderDto);
         return "redirect:/";
     }
 
@@ -67,4 +60,7 @@ public class OrderController {
         orderService.cancel(myId);
         return "redirect:/orders";
     }
+
+
+
 }
