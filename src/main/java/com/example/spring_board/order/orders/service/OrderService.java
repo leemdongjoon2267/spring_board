@@ -48,7 +48,7 @@ public class OrderService {
                     .quantity(orderDto.getCount().get(i))
                     .orders(orders1)
                     .build();
-            //                    order객체는 현재로서는 findByid할 수 있는 매개변수가 없다.
+//            order객체는 현재로서는 findByid할 수 있는 매개변수가 없다.
 //            그래서, 위에서 생성한 order객체를 orderItem에 바로 insert시킬수 있다.(아직 DB에 저장이 되지 않았음에도 불구하고, 임시저장 되어있는 상태로도 insert가 가능)
             orderItemRepository.save(orderItem);
         }
@@ -57,9 +57,9 @@ public class OrderService {
     }
 
     public List<Orders> findAll() throws SQLException{
-        List<Orders> members = orderRepository.findAll();
+        List<Orders> orders1 = orderRepository.findAll();
 
-        return members;
+        return orders1;
     }
 
     public void cancel(Long myId){
@@ -69,7 +69,7 @@ public class OrderService {
         orderRepository.save(order1);
     }
 
-    public List<Orders> findFilter(OrderSearch orderSearch){
+    public List<Orders> findFilter(OrderSearch orderSearch) throws SQLException{
         List<Orders> orders = new ArrayList<>();
         if(isNullOrEmpty(orderSearch.getMemberName()) && orderSearch.getOrderStatus() == null ){
             orders = orderRepository.findAll();

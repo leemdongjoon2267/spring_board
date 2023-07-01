@@ -5,6 +5,7 @@ import com.example.spring_board.order.orders.domain.Orders;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import javax.persistence.criteria.Order;
@@ -13,6 +14,7 @@ import java.time.LocalDateTime;
 @Getter
 @NoArgsConstructor
 @Entity
+@Setter
 public class OrderItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,6 +28,9 @@ public class OrderItem {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(nullable = false)
     private Item item;
+
+    @Enumerated(EnumType.STRING)
+    private OrderItemStatus status;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(nullable = false)

@@ -1,5 +1,5 @@
 package com.example.spring_board.order.order_item.repository;
-
+import com.example.spring_board.order.order_item.domain.OrderItemStatus;
 import com.example.spring_board.order.order_item.domain.OrderItem;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

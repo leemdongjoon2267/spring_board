@@ -11,7 +11,9 @@ import java.util.List;
 //내부적으로 Setter사용해서 html의 input값을 꺼내어 담으므로, Setter가 필요
 @Setter
 public class OrderItemDto {
-
+    private Long memberId;
+    private List<Long> itemId;
+    private List<Long> count;
 
 
 }

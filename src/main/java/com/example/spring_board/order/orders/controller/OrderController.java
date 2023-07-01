@@ -36,7 +36,7 @@ public class OrderController {
     }
 
     @PostMapping("/order")
-    public String orderCreate(OrderDto orderDto) throws Exception {
+    public String orderCreate(OrderDto orderDto) throws Exception {;
 //        Member member1 = memberRepository.findById(orderDto.getMemberId()).orElse(null);
 //        Orders orders1 = Orders.builder()
 //                .member(member1)
@@ -49,14 +49,14 @@ public class OrderController {
 
 //    @ModelAttribute("orderSearch") 명시적으로 OrderSearchDto와 mapping 할수도 있다.
     @GetMapping("/orders")
-    public String orderFindAll(OrderSearch orderSearch, Model model) {
+    public String orderFindAll(OrderSearch orderSearch, Model model) throws SQLException{
         List<Orders> orders = orderService.findFilter(orderSearch);
         model.addAttribute("orders", orders);
         return "order/orderList";
     }
 
     @PostMapping("orders/{id}/cancel")
-    public String ordersCancel(@PathVariable("id")Long myId) {
+    public String ordersCancel(@PathVariable("id")Long myId) throws Exception{
         orderService.cancel(myId);
         return "redirect:/orders";
     }
