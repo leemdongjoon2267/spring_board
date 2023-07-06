@@ -16,16 +16,21 @@
                 <th>도시</th>
                 <th>주소</th>
                 <th>우편번호</th>
+                <th>주문횟수</th>
             </tr>
             </thead>
             <tbody>
-            <tr th:each="member : ${members}">
+            <tr th:each="member : ${memberlist}">
                 <td th:text="${member.id}"></td>
                 <td th:text="${member.name}"></td>
                 <td th:text="${member.email}"></td>
-                <td th:text="${member.address?.city}"></td>
-                <td th:text="${member.address?.details}"></td>
-                <td th:text="${member.address?.zipcode}"></td>
+                <td th:text="${member.city}"></td>
+                <td th:text="${member.details}"></td>
+                <td th:text="${member.zipcode}"></td>
+                <td>
+                    <a th:href="@{/orders/member(id=${member.id})}" th:text="${member.orderCount}"></a>
+                </td>
+<!--                <td th:text="${member.orderCount}"></td>-->
             </tr>
             </tbody>
         </table>

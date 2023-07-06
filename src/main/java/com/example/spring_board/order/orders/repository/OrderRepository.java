@@ -16,4 +16,5 @@ public interface OrderRepository extends JpaRepository <Orders, Long>{
 
 //    2개이상의 컬럼으로 where조건문을 걸때는 And포함
     List<Orders> findByMemberAndStatus(Member member, OrderStatus orderStatus);
+
 }

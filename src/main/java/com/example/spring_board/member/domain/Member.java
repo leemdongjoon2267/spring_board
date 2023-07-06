@@ -1,6 +1,7 @@
 package com.example.spring_board.member.domain;
 
 //import com.example.spring_board.order.orders.domain.Orders;
+import com.example.spring_board.order.orders.domain.Orders;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -43,8 +44,9 @@ public class Member {
 //    Member객체 입장에서 fetch전략은 즉시 Order객체를 조회할지 말지에 대한 선택
 //    LAZY 즉시 로딩X -> 참조해서 사용할때만 로딩O, EAGER 즉시로딩O
 //    N+1 이슈를 해결하기 위해서는 LAZY사용 추천.
-//    @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
-//    private List<Orders> orders;
+    @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
+    private List<Orders> orders;
+
 
     @Column
     private LocalDateTime createDate;

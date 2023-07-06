@@ -8,8 +8,9 @@ import lombok.Setter;
 @Getter
 //내부적으로 Setter사용해서 html의 input값을 꺼내어 담으므로, Setter가 필요
 @Setter
-public class MemberDto {
+public class MemberRequestDto {
 
+    private String id;
     private String name;
     private String email;
     private String password;

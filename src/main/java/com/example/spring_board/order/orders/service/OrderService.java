@@ -62,9 +62,19 @@ public class OrderService {
         return orders1;
     }
 
+    public List<Orders> findByMemberId(Long myId) throws SQLException{
+        List<Orders> orders1 = orderRepository.findByMember(memberRepository.findById(myId).orElse(null));
+
+        return orders1;
+    }
+
     public void cancel(Long myId){
         Orders order1 = orderRepository.findById(myId).orElse(null);
         order1.updateCancelStatus();
+        List<OrderItem> orderItems = orderItemRepository.findByOrderId(myId);
+        for(OrderItem orderItem : orderItems){
+            orderItem.getItem().addQuantity(orderItem.getQuantity().intValue());
+        }
 //        order1.getItem().addQuantity(order1.getQuantity().intValue());
         orderRepository.save(order1);
     }
