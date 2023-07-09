@@ -20,7 +20,7 @@ public class BankUserService {
         bankUserRepository.save(user);
     }
 
-    public User findUserById(Long myId) {
-        return bankUserRepository.findById(myId).orElse(null);
+    public User findUserById(Long userId) {
+        return bankUserRepository.findById(userId).orElse(null);
     }
 }

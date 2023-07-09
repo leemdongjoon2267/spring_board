@@ -18,8 +18,7 @@ public class BankUserController {
 
     @Autowired
     private BankUserService bankUserService;
-    @Autowired
-    private BankUserRequestDto bankUserRequestDto;
+
 
     @PostMapping("/user/create")
     public String CreateUser(@RequestBody BankUserRequestDto bankUserRequestDto) throws SQLException {
@@ -29,8 +28,8 @@ public class BankUserController {
     }
 
     @PostMapping("/user/{userId}/account")
-    public String Account(@PathVariable Long myId, @RequestBody BankUserRequestDto bankUserRequestDto) throws SQLException{
-        User user = bankUserService.findUserById(myId);
+    public String Account(@PathVariable Long userId, @RequestBody BankUserRequestDto bankUserRequestDto) throws SQLException{
+        User user = bankUserService.findUserById(userId);
         Account accounts = new Account(bankUserRequestDto.getAccountNumber(), bankUserRequestDto.getBalance());
         user.addAccount(accounts);
         bankUserService.create(user);
